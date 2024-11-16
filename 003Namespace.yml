@@ -1,16 +1,15 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: expence-app
+  name: expense-app
 
-
----
+--- 
 apiVersion: v1
-kind: pod
+kind: Pod
 metadata:
   name: frontend-pod
-  namespace: expence-app
+  namespace: expense-app
 spec:
-  conatiners:
+  containers:
   - name: nginx
     image: nginx
