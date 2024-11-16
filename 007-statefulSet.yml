@@ -1,25 +1,37 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: nginx-deployment
-  labels:
-    app: nginx
+  name: mysql
 spec:
-  replicas: 8
   selector:
     matchLabels:
-      app: nginx
+      app: nginx # has to match .spec.template.metadata.labels
+  serviceName: "nginx"
+  replicas: 3 # by default is 1
+  minReadySeconds: 10 # by default is 0
   template:
     metadata:
       labels:
-        app: nginx
+        app: nginx # has to match .spec.selector.matchLabels
     spec:
+      terminationGracePeriodSeconds: 10
       containers:
       - name: nginx
-        image: docker.io/nginx:perl
+        image: registry.k8s.io/nginx-slim:0.24
         ports:
         - containerPort: 80
-  strategy:
-    type: RollingUpdate
-    rollingUpdate:
-      maxUnavailable: 2
+          name: web
+        volumeMounts:
+        - name: www
+          mountPath: /usr/share/nginx/html
+  volumeClaimTemplates:
+  - metadata:
+      name: www
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      storageClassName: "standard"
+      resources:
+        requests:
+          storage: 3Gi  
+
+# creating a set ----> pods with a disk 
