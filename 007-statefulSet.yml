@@ -5,7 +5,7 @@ metadata:
   labels:
     app: nginx
 spec:
-  replicas: 3
+  replicas: 8
   selector:
     matchLabels:
       app: nginx
@@ -19,7 +19,7 @@ spec:
         image: docker.io/nginx:perl
         ports:
         - containerPort: 80
-  # strategy:
-  #   type: RollingUpdate
-  #   rollingUpdate:
-  #     maxUnavailable: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 2
