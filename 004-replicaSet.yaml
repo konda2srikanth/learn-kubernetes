@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: frontend
+  labels:                      # Labels for the replicaSet
+    tier: frontend
+spec:
+  # modify replicas according to your case
+  replicas: 3
+  selector:
+    matchLabels:             # This defines whatever the pods that have "tier: frontend can go and attach to the set or service having the similar label"
+      tier: frontend 
+  template:
+    metadata: 
+      labels:                 # Labels for the pods created by the replicaSet
+        tier: frontend
+    spec:
+      containers:
+      - name: nginx
+        image: docker.io/nginx:otel
