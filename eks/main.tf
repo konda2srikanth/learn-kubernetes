@@ -92,7 +92,7 @@ resource "aws_iam_role_policy_attachment" "example-AmazonEC2ContainerRegistryRea
 }
 
 resource "aws_eks_addon" "example" {
-  depends_on = [ aws_eks_cluster.example]
+  depends_on      = [aws_eks_addon.example]
   cluster_name = aws_eks_cluster.example.name
   addon_name   = "vpc-cni"
 }
