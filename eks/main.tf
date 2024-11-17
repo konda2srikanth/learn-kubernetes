@@ -1,5 +1,5 @@
 resource "aws_eks_cluster" "name" {
-  name = "mysrikanth"
+  name = "name"
   role_arn = aws_iam_role.example.arn
 
  vpc_config {
@@ -46,6 +46,7 @@ resource "aws_iam_role_policy_attachment" "example-AmazonEKSVPCResourceControlle
 
 
 resource "aws_eks_node_group" "example" {
+  depends_on = [ "aws_eks_addon.exapmle" ]
   cluster_name    = aws_eks_cluster.example.name
   node_group_name = "mysrikanth-np-spot"
   node_role_arn   = aws_iam_role.node-example.arn
@@ -88,4 +89,10 @@ resource "aws_iam_role_policy_attachment" "example-AmazonEKS_CNI_Policy" {
 resource "aws_iam_role_policy_attachment" "example-AmazonEC2ContainerRegistryReadOnly" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"
   role       = aws_iam_role.node-example.name
+}
+
+resource "aws_eks_addon" "example" {
+  depends_on = [ "aws_eks_cluster.example" ]
+  cluster_name = aws_eks_cluster.example.name
+  addon_name   = "vpc-cni"
 }
