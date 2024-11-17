@@ -46,7 +46,7 @@ resource "aws_iam_role_policy_attachment" "example-AmazonEKSVPCResourceControlle
 
 
 resource "aws_eks_node_group" "example" {
-  depends_on = [ "aws_eks_addon.exapmle" ]
+  depends_on = [aws_eks_addon.exapmle]
   cluster_name    = aws_eks_cluster.example.name
   node_group_name = "mysrikanth-np-spot"
   node_role_arn   = aws_iam_role.node-example.arn
