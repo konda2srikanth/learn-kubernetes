@@ -1,10 +1,10 @@
 resource "aws_eks_cluster" "name" {
   name = "name"
   role_arn = aws_iam_role.example.arn
-}
-vpc_config {
-    subnet_ids = ["subnet-01520a6f2a33cd68d","subnet-0a29d82b448bca8f1","subnet-0d5495d057954746b"]
-}
+
+ vpc_config {
+    subnet_ids = ["subnet-01520a6f2a33cd68d", "subnet-0a29d82b448bca8f1", "subnet-0d5495d057954746b"] # This is where nodes are going to be provisioned. This is a multi-zonal kubernetes cluster
+  }
 
 
   depends_on = [
