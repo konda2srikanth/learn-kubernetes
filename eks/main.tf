@@ -1,5 +1,5 @@
 resource "aws_eks_cluster" "name" {
-  name = "mysrikanth"
+  name = "name"
   role_arn = aws_iam_role.example.arn
 
  vpc_config {
