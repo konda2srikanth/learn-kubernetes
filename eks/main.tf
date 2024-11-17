@@ -1,4 +1,4 @@
-resource "aws_eks_cluster" "name" {
+resource "aws_eks_cluster" "example" {
   name = "mysrikanth"
   role_arn = aws_iam_role.example.arn
 
