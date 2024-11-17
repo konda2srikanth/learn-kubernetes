@@ -1,5 +1,5 @@
 resource "aws_eks_cluster" "name" {
-  name = "name"
+  name = "mysrikanth"
   role_arn = aws_iam_role.example.arn
 
  vpc_config {
@@ -51,7 +51,7 @@ resource "aws_eks_node_group" "example" {
   node_group_name = "name-np-spot"
   node_role_arn   = aws_iam_role.node-example.arn
   subnet_ids      = ["subnet-01520a6f2a33cd68d", "subnet-0a29d82b448bca8f1", "subnet-0d5495d057954746b"]
-  instance_types = ["t2.meduim","t2.large"]
+  instance_types = ["t2.medium","t2.large"]
   capacity_type = "SPOT"
   scaling_config {
     desired_size = 1
@@ -90,6 +90,7 @@ resource "aws_iam_role_policy_attachment" "example-AmazonEC2ContainerRegistryRea
   policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"
   role       = aws_iam_role.node-example.name
 }
+
 
 resource "aws_eks_addon" "example" {
   depends_on = ["aws_eks_cluster.example"]
