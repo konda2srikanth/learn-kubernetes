@@ -46,7 +46,7 @@ resource "aws_iam_role_policy_attachment" "example-AmazonEKSVPCResourceControlle
 
 
 resource "aws_eks_node_group" "example" {
-  depends_on = [aws_eks_addon.example]
+  depends_on      = [aws_eks_addon.example]
   cluster_name    = aws_eks_cluster.example.name
   node_group_name = "name-np-spot"
   node_role_arn   = aws_iam_role.node-example.arn
@@ -93,7 +93,7 @@ resource "aws_iam_role_policy_attachment" "example-AmazonEC2ContainerRegistryRea
 
 
 resource "aws_eks_addon" "example" {
-  depends_on = [aws_eks_cluster.example]
+  depends_on   = [aws_eks_cluster.example]
   cluster_name = aws_eks_cluster.example.name
   addon_name   = "vpc-cni"
 }
