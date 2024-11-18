@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: backend
+  name: {{.values.appName}}
   labels:                      
-    tier: backend
+    tier: {{.values.appName}}
 spec:
   containers:
-  - name: backend
-    image: docker.io/sanraman/expense-backend
+  - name: {{.values.appName}}
+    image: docker.io/sanraman/expense-{{.values.appName}}
     ports:
-    - containerPort: 8080
+    - containerPort: {{.values.port}}
