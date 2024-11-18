@@ -1,0 +1,24 @@
+apiVersion: apps:v1
+kind: Deployment
+matedata:
+  name: {{.values.appName}}
+  labels:
+  tier: {{.values.appName}}
+spec:
+  replicas: {{.values.replicas}}
+  selector:
+    matchLabels:
+      tier: {{.values.appName}}
+  template:
+    metadata:
+      labels:
+        tier: {{.values.appName}}
+    spec:
+      conatiners:
+      - name: {{.values.appName}}
+        image: docker.io/sanraman/expense-{{.values.appName}}
+        envFrom:
+          - configMapRef:
+              name: {{.values.appName}}
+        ports:
+        - containerPort: {{.values.port}}

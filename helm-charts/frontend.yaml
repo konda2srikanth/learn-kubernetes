@@ -4,3 +4,9 @@ port: 80
 service:
   type: LoadBalencer
   port: 80
+
+  replicas: 1
+  env: {}
+
+  schemaLoader:
+  enabled: false
