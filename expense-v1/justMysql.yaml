@@ -1,0 +1,56 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mysql
+  labels:                      
+    tier: mysql
+spec:
+  containers:
+  - name: mysql
+    image: docker.io/mysql:8.0
+    ports:
+    - containerPort: 80
+    env:  
+      - name: MYSQL_ROOT_PASSWORD
+        value: ExpenseApp@1
+
+--- 
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql-svc
+spec:
+  type: ClusterIP
+  selector:
+    tier: mysql
+  ports:
+    - name: http
+      protocol: TCP
+      port: 3306 # service listens on 8080 
+      targetPort: 3306           # requests received by this service will be forwareded to pods port 
+
+# --- 
+# # Job for schema injection
+# apiVersion: batch/v1
+# kind: Job
+# metadata:
+#   name: schema-loader
+# spec:
+#   template:
+#     spec:
+#       containers:
+#       - name: schema-loader
+#         image: docker.io/sanraman/expense-schema-loader
+#         env: 
+#         - name: app_repo
+#           value: "https://github.com/expenseapp-001/expense-backend.git"
+#         - name: login_host
+#           value: mysql-svc
+#         - name: login_user
+#           value: root 
+#         - name: login_password 
+#           value: ExpenseApp@1
+#         - name: schema_file
+#           value: /app/schema/backend.sql
+#       restartPolicy: Never
+#   backoffLimit: 4
