@@ -1,10 +1,10 @@
 apiVersion: v1
-kind: configMap
+kind: ConfigMap
 metadata:
-  name: {{.values.appName}}
-  labels:                      
-    tier: {{.values.appName}}
-data: 
-  {{-with.values.env }}
-        {{- toYaml . | nindent 2 }}
+  name: {{ .Values.appName }}
+  labels:
+    tier: {{ .Values.appName }}
+data:
+  {{- with .Values.env }}
+  {{- toYaml . | nindent 2 }}
   {{- end }}
