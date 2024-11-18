@@ -1,0 +1,4 @@
+apiVersion: v2
+nmae: sample-chart
+description: A Helm chart  for kubernetes
+vesrion: 0.1.0
