@@ -5,6 +5,6 @@ metadata:
   labels:                      
     tier: {{.values.appName}}
 data: 
-  {{-with.values.env}}
+  {{-with.values.env }}
         {{- toYaml . | nindent 2 }}
-  {{- end}}
+  {{- end }}
