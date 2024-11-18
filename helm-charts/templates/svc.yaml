@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{.values.appName}}-svc
+spec:
+  type: ClusterIP
+  selector:
+    tier: {{.values.service.type}}-
+  ports:
+    - name: http
+      protocol: TCP
+      port: {{.values.service.port}}-                # service listens on 8080 
+      targetPort: {{.values.service.port}}-
