@@ -14,7 +14,7 @@ spec:
       labels:
         tier: {{.values.appName}}
     spec:
-      conatiners:
+      containers:
       - name: {{.values.appName}}
         image: docker.io/sanraman/expense-{{.values.appName}}
         envFrom:
