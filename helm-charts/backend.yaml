@@ -1,18 +1,18 @@
 appName: backend
 port: 8080
 
-service:
-  type: ClusterIP
-  port: 8080
+serviceType: ClusterIP
+servicePort: 8080
 
 replicas: 1
-env:
-   DB_HOST: mysql-svc
-   app_repo: https://github.com/expenseapp-001/expense-backend.git
+
+env: 
+   DB_HOST: mysql-svc 
+   app_repo: "https://github.com/expenseapp-001/expense-backend.git"
    login_host: mysql-svc
-   login_user: root
+   login_user: root 
    login_password: ExpenseApp@1
    schema_file: /app/schema/backend.sql
+   bu: expense
 
-schemaLoader:
-  enabled: true
+schemaLoaderEnabled: true 

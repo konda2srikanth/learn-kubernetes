@@ -6,5 +6,5 @@ metadata:
     tier: {{ .Values.appName }}
 data:
   {{- with .Values.env }}
-  {{- toYaml . | nindent 2 }}
+        {{- toYaml . | nindent 2 }}
   {{- end }}

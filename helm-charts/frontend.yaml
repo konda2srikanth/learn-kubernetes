@@ -1,12 +1,13 @@
 appName: frontend
 port: 80
 
-service:
-  type: LoadBalencer
-  port: 80
+serviceType: LoadBalancer
+servicePort: 80
 
-  replicas: 1
-  env: {}
 
-  schemaLoader:
-  enabled: false
+replicas: 1
+
+env: 
+  bu: expense 
+
+schemaLoaderEnabled: false 

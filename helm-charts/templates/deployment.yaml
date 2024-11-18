@@ -1,24 +1,24 @@
-apiVersion: apps:v1
+apiVersion: apps/v1
 kind: Deployment
-matedata:
-  name: {{.values.appName}}
+metadata:
+  name: {{ .Values.appName }}
   labels:
-  tier: {{.values.appName}}
+    tier: {{ .Values.appName }}
 spec:
-  replicas: {{.values.replicas}}
+  replicas: {{ .Values.replicas }}
   selector:
     matchLabels:
-      tier: {{.values.appName}}
+      tier: {{ .Values.appName }}
   template:
     metadata:
       labels:
-        tier: {{.values.appName}}
+        tier: {{ .Values.appName }}
     spec:
       containers:
-      - name: {{.values.appName}}
-        image: docker.io/sanraman/expense-{{.values.appName}}
+      - name: {{ .Values.appName }}
+        image: docker.io/sanraman/expense-{{ .Values.appName }}
         envFrom:
-          - configMapRef:
-              name: {{.values.appName}}
+        - configMapRef:
+            name: {{ .Values.appName }}
         ports:
-        - containerPort: {{.values.port}}
+        - containerPort: {{ .Values.port }}
