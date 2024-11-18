@@ -54,8 +54,8 @@ resource "aws_eks_node_group" "example" {
   instance_types = ["t2.medium","t2.large"]
   capacity_type = "SPOT"
   scaling_config {
-    desired_size = 2
-    max_size     = 3
+    desired_size = 1
+    max_size     = 2
     min_size     = 1
   }
 
