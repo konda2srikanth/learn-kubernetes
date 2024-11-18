@@ -1,8 +1,8 @@
-{{- if .values.schemaLoader.enabled }}
+{{- if .Values.schemaLoader.enabled }}
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: schema-loader-{{values.appName}}
+  name: schema-loader-{{ .Values.appName }}
 spec:
   template:
     spec:
@@ -11,7 +11,7 @@ spec:
         image: docker.io/sanraman/expense-schema-loader
         envFrom:
         - configMapRef:
-            name: {{.values.appName}}
+            name: {{ .Values.appName }}
       restartPolicy: Never
   backoffLimit: 4
 {{- end }}
