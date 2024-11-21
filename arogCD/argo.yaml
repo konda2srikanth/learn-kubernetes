@@ -22887,7 +22887,7 @@ metadata:
 spec:
   ingressClassName: "nginx"
   rules:
-  - host: "argocd.cloudapps.today"
+  - host: "argocd.expenseapp.shop"
     http:
       paths:
       - path: "/"
